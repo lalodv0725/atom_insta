@@ -22,3 +22,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.my-title-font {
+    font-family: 'Permanent Marker', cursive;
+}
+
+.my-letter-font{
+    font-family: 'Indie Flower';
+}
