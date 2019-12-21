@@ -38,7 +38,7 @@ class Login extends Component {
         let stringService
 
         if(service === 'facebook'){
-            //let provider = new firebase.auth.FacebookAuthProvider()            
+            // let provider = new firebase.auth.FacebookAuthProvider()            
             stringService = "FacebookAuthProvider"
         }else {
             //let provider = new firebase.auth.GoogleAuthProvider()
