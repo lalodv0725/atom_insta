@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import NewPost from '../components/new-post'
+
 class Navbar extends Component {
   state = {
     collapsed: false
@@ -61,12 +63,7 @@ class Navbar extends Component {
         <div className="navbar-end">
             <div className="navbar-item">
                 <div className="buttons">
-                <a className="button is-primary">
-                    <strong>Sign up</strong>
-                </a>
-                <a className="button is-light">
-                    Log in
-                </a>
+                    <NewPost/>
             </div>
             </div>
         </div>

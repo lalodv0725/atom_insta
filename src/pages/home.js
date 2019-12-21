@@ -4,17 +4,40 @@ import LoadingBar from 'react-top-loading-bar';
 import {toast} from 'react-toastify';
 
 
-
 class Home extends Component{
 
 constructor (props){
     super(props)
         this.state = {
             image: '',
-            progressUpload: 0 
+            progressUpload: 0,
+            posts:[]
         } 
 }
 
+componentDidMount = () => {
+    let postsRef = firebase.database().ref('posts')
+
+    postsRef.on('value', (snapshot) => {
+        let posts = snapshot.val()
+        console.log("Publicaciones:", posts)
+
+        let newPosts = []
+
+        for(let post in posts){
+            console.log("Publicacion:", post)
+            newPosts.push({
+                id:post,
+                content: posts[post].content,
+                photoURL: posts[post].photoURL
+            })
+        }
+
+        this.setState({
+            posts:newPosts
+        })
+    })
+}
 
 handleChange = (e) => {
     let [image] = e.target.files
@@ -30,7 +53,7 @@ handleChange = (e) => {
 
     task.on('state_changed', (snapshot) => {
         let percentage =(snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        task.cancel()
+        //task.cancel()
         this.setState({
             progressUpload:percentage <= 0 ? 20 : percentage
         })
@@ -58,12 +81,25 @@ restartProgressBar = () => {
         progressUpload:0
     })
 }
+
+
+addPost = () => {
+    let posts = firebase.database().ref('posts')
+    let newPost = posts.push()
+
+    newPost.set({
+        content:`Hola ${new Date().toDateString()}`,
+        photoURL:'https://firebasestorage.googleapis.com/v0/b/atom-insta-100.appspot.com/o/photos%2FSat%20Dec%2021%202019-cf68bc3e9416fc435e0b76db4bad3033.jpg?alt=media&token=301b49bf-d690-4776-ab58-56fdedb7bb45',
+        createdAt: new Date().toJSON()
+    })
+}
     
 
     render(){
         let {
             image,
-            progressUpload
+            progressUpload,
+            posts
         } = this.state
     
         return(
@@ -74,6 +110,11 @@ restartProgressBar = () => {
             progress={progressUpload} 
             color="blue" 
             onLoaderFinished={this.restartProgressBar}/>
+
+            <button
+            onClick={this.addPost}>
+                Post Nuevo
+            </button>
 
             <div className="file has-name is-boxed">
                 <label className="file-label">
@@ -96,6 +137,17 @@ restartProgressBar = () => {
                         </span>) : null
                     }
                 </label>
+            </div>
+            <div className="columns is-multiline">
+                {
+                    posts.map(l => {
+                        return (
+                            <div key={l.id} className="column is-4">
+                                <img src={l.photoURL}/>
+                            </div>
+                        )
+                    })
+                }
             </div>
         </div>
         )        
