@@ -9,10 +9,13 @@ import {
 //css
 import 'bulma/css/bulma.css'
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 //pages
 import Login from './pages/login'
 import Home from './pages/home'
+
+//Components
 import Layout from './components/layout'
 
 //Initialize Firebase
