@@ -13,6 +13,7 @@ import './App.css'
 //pages
 import Login from './pages/login'
 import Home from './pages/home'
+import Layout from './components/layout'
 
 //Initialize Firebase
 let firebaseConfig = {
@@ -36,23 +37,21 @@ class App extends Component {
   render() {
     //console.log(process.env)
     return (
-        <div className="container">
-            <div className="section">
                 <Router>
-                    <Switch>
-                        <Route 
-                        path="/" 
-                        exact
-                        component={Login}
-                        />
-                        <Route path="/home" 
-                        exact
-                        component={Home}
-                        />
-                    </Switch>
+                    <Layout>
+                        <Switch>
+                            <Route 
+                            path="/" 
+                            exact
+                            component={Login}
+                            />
+                            <Route path="/home" 
+                            exact
+                            component={Home}
+                            />
+                        </Switch>
+                    </Layout>
                 </Router>
-            </div>
-         </div>
     )
   }
 }
