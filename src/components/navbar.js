@@ -63,7 +63,6 @@ class Navbar extends Component {
         <div className="navbar-end">
             <div className="navbar-item">
                 <div className="buttons">
-                    <NewPost/>
             </div>
             </div>
         </div>
