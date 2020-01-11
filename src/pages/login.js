@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
-import { Link } from 'react-router-dom'
 
 class Login extends Component {
     constructor(props){
@@ -15,6 +14,14 @@ class Login extends Component {
             let data = await firebase.auth().getRedirectResult()
 
             if(data.credential){
+
+            let user = firebase.database().ref(`users/${data.user.uid}`)
+
+            user.set({
+                displayName: data.user.displayName,
+                photoURL: data.user.photoURL
+            })
+
                 console.log('Sesion iniciada')
                 
                 let {

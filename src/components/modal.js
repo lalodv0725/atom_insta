@@ -4,7 +4,6 @@ const Modal = ({
   children,
   className,
   onClose,
-  buttonsFooter,
   title
 }) => {
   return (
@@ -28,13 +27,6 @@ const Modal = ({
             children
           }
         </section>
-
-        {/* FOOTER */}
-        <footer className="modal-card-foot">
-          {
-            buttonsFooter
-          }
-        </footer>
       </div>
     </div>
   )
