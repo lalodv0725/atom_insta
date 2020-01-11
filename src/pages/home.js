@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 import Post from '../components/post'
+import PostCard from '../components/post-card'
 
 
 class Home extends Component{
@@ -50,18 +51,16 @@ componentDidMount = () => {
             <h1>BIENVENIDO</h1>
 
             <Post/>
-
-            <div className="columns is-multiline">
                 {
-                    posts.map(l => {
+                    posts.map((p, i) => {
                         return (
-                            <div key={l.id} className="column is-4">
-                                <img src={l.photoURL}/>
-                            </div>
+                        <PostCard
+                            post={p}
+                            key={i}
+                        />
                         )
                     })
                 }
-            </div>
         </div>
         )        
     }

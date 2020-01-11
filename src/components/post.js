@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Modal from './modal'
 import firebase from 'firebase'
-import LoadingBar from 'react-top-loading-bar';
-import {toast} from 'react-toastify';
+import LoadingBar from 'react-top-loading-bar'
+import {toast} from 'react-toastify'
+import uuid from 'uuid/v1'
 
 class Post extends Component {
     constructor(props) {
@@ -74,7 +75,7 @@ class Post extends Component {
         } = this.state
 
 
-        let name = `${new Date().toDateString()}-${image.name}`
+        let name = `${uuid()}-${image.name}`
 
         let refStorage = firebase.storage().ref(`/photos/${name}`)
         let task =  refStorage.put(image)
@@ -114,7 +115,7 @@ class Post extends Component {
         newPost.set({
         content,
         photoURL:url,
-        authoredId: 'TWNITntVyrQSPiShCcESAAcgXPg2',
+        authorId: 'TWNITntVyrQSPiShCcESAAcgXPg2',
         createdAt: new Date().toJSON()
         })
 

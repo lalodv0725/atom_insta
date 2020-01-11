@@ -17,9 +17,12 @@ class Login extends Component {
 
             let user = firebase.database().ref(`users/${data.user.uid}`)
 
+            console.log("Datos Usuario:", data.user);
+
             user.set({
                 displayName: data.user.displayName,
-                photoURL: data.user.photoURL
+                photoURL: data.user.photoURL,
+                email: data.user.email
             })
 
                 console.log('Sesion iniciada')
@@ -84,7 +87,7 @@ class Login extends Component {
     return ( 
         <div className="columns">
             <div className="column is-two-thirds">
-                <img src="/assets/preview.jpg"/>
+                <img src="/assets/preview.jpg" alt=""/>
             </div>
             <div className="column">
                 <h1 className="title is-1 has-text-centered my-title-font">Insta Atom</h1>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import NewPost from '../components/new-post'
-
 class Navbar extends Component {
   state = {
     collapsed: false
