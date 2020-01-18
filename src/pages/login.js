@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
+import store from '../tree'
 
 class Login extends Component {
     constructor(props){
@@ -19,11 +20,16 @@ class Login extends Component {
 
             console.log("Datos Usuario:", data.user);
 
-            user.set({
+            let userFormat = {
                 displayName: data.user.displayName,
                 photoURL: data.user.photoURL,
                 email: data.user.email
-            })
+            }
+
+            user.set(userFormat)
+            window.localStorage.setItem('user', JSON.stringify(userFormat))
+            store.set("user",userFormat)
+            store.commit()
 
                 console.log('Sesion iniciada')
                 
