@@ -5,6 +5,7 @@ import {
     Switch,
     Route,
 } from 'react-router-dom'
+import PostDetail from './pages/post-detail'
 
 //css
 import 'bulma/css/bulma.css'
@@ -51,6 +52,9 @@ class App extends Component {
                             <Route path="/home" 
                             exact
                             component={Home}
+                            />
+                            <Route path="/posts/:id" 
+                            component={PostDetail}
                             />
                         </Switch>
                     </Layout>

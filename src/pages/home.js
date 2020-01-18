@@ -30,7 +30,6 @@ componentDidMount = () => {
                 photoURL: posts[post].photoURL,
                 authorId: posts[post].authorId,
                 createdAt: posts[post].createdAt
-
             })
         }
 
@@ -51,16 +50,20 @@ componentDidMount = () => {
             <h1>BIENVENIDO</h1>
 
             <Post/>
-                {
-                    posts.map((p, i) => {
-                        return (
-                        <PostCard
-                            post={p}
-                            key={i}
-                        />
-                        )
-                    })
-                }
+                <div className="columns">
+                    <div className="column is-half is-offset-one-quarter">
+                        {
+                        posts.map((p, i) => {
+                            return (
+                            <PostCard
+                                post={p}
+                                key={i}
+                            />
+                            )
+                        })
+                        }
+                    </div>
+                </div>
         </div>
         )        
     }
